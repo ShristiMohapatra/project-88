@@ -1,19 +1,19 @@
 
-// Create canvas variable
-var canvas = new fabric.Canvas('myCanvas');
+ // Create canvas variable
+ var canvas = new fabric.Canvas('myCanvas');
 
-//Set initial positions for ball and hole images.
-ball_x=0;
-ball_y=0;
-hole_x=400;
-hole_y=800;
+ //Set initial positions for ball and hole images.
+ ball_y=0;
+ ball_x=0;
+ hole_y=400;
+ hole_x=800;
 
-block_image_width = 5;
-block_image_height = 5;
+ block_image_width = 5;
+ block_image_height = 5;
 
-function load_img(){
+ function load_img() {
 	// write code to Upload golf image on the canvas
-	fabric.Image.fromURL("golf-h.png",(Img){
+	fabric.Image.fromURL("golf-h.png",function (Img) {
 		hole_obj = Img;
 		hole_obj.scaleToWidth(50);
 		hole_obj.scaleToHeight(50);
@@ -22,25 +22,26 @@ function load_img(){
 			left:hole_x
 		});
         canvas.add(hole_obj);
-	)};
+	});
 	new_image();
-	}
+    }
 
 function new_image()
 {
 	// write code to Upload ball image on canvas
-	fabric.Image.fromURL("ball.png",(Img){
-		ball_obj = Img;
-		ball_obj.scaleToWidth(50);
-		ball_obj.scaleToHeight(50);
-		ball_obj.set({
-			top:ball_y,
-			left:ball_x
-		});
-        canvas.add(ball_obj);
-	)};
-	new_image();
-}
+	fabric.Image.fromURL("ball.png", function(Img){
+	ball_obj = Img;
+	ball_obj.scaleToWidth(50);
+	ball_obj.scaleToHeight(50);
+	ball_obj.set({
+		top:ball_y,
+		left:ball_x
+	});
+	canvas.add(ball_obj);
+    });
+
+	}
+
 
 window.addEventListener("keydown", my_keydown);
 
@@ -89,7 +90,7 @@ function my_keydown(e)
 				console.log("block_image_height is = " + block_image_height);
 				console.log("When up arrow is pressed, X = "+ball_x+" and Y = " + ball_y);
 				canvas.remove(ball_obj);
-				player_update();
+				new_image();
 			
 	}
 
@@ -101,7 +102,7 @@ function my_keydown(e)
 			console.log("block_image_height is = " + block_image_height);
 			console.log("When down arrow is pressed, X = "+player_x+" and Y = " + player_y);
 			canvas.remove(ball_obj);
-			player_update();
+			new_image();
 	}
 
 	function left()
@@ -113,7 +114,7 @@ function my_keydown(e)
 				console.log("block_image_height is = " + block_image_width);
 				console.log("When left arrow is pressed, X = "+ball_x+" and Y = " + ball_y);
 				canvas.remove(ball_obj);
-				player_update();
+				new_image();
 		}
 	}
 
@@ -126,8 +127,7 @@ function my_keydown(e)
 				console.log("block_image_height is = " + block_image_width);
 				console.log("When right arrow is pressed, X = "+ball_x+" and Y = " + ball_y);
 				canvas.remove(ball_obj);
-				player_update();
-	}
-	
-}
+				new_image();
+		}
+
 
